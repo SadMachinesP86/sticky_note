@@ -19,7 +19,7 @@ fn process_command(flag: &String, arguments: &Vec<String>) {
         "-w" => write(arguments),
         "-W" => overwrite(arguments),
         "-d" => delete(arguments),
-        _ => println!("Unrecognized command {}", flag)
+        _ => println!("Unrecognized flag {}", flag)
     }
 }
 
@@ -29,30 +29,34 @@ fn list() {
 }
 
 fn read(arguments: &Vec<String>) {
-    match arguments.len() {
-        0 => println!("'Read' expects an argument (name of sticky note to read)."),
-        _ => db_operations::read_sticky_note(&arguments[0])
+    if arguments.len() == 1 {
+        db_operations::read_sticky_note(&arguments[0])
+    } else {
+        println!("'-r' expects one argument (name of sticky note to read).")
     }
 }
 
 fn write(arguments: &Vec<String>) {
-    match arguments.len() {
-        0..=1 => println!("'-w' expects two arguments (name of sticky note to write, and the text to write)."),
-        _ => db_operations::write_sticky_note(&arguments[0], &arguments[1], false)
+    if arguments.len() == 2 {
+        db_operations::write_sticky_note(&arguments[0], &arguments[1], false)
+    } else {
+        println!("'-w' expects two arguments (name of sticky note to write, and the text to write).")
     }
 }
 
 fn overwrite(arguments: &Vec<String>) {
-    match arguments.len() {
-        0..=1 => println!("'-W' expects two arguments (name of sticky note to write, and the text to write)."),
-        _ => db_operations::write_sticky_note(&arguments[0], &arguments[1], true)
+    if arguments.len() == 2 {
+        db_operations::write_sticky_note(&arguments[0], &arguments[1], true)
+    } else {
+        println!("'-W' expects two arguments (name of sticky note to write, and the text to write).")
     }
 }
 
 fn delete(arguments: &Vec<String>) {
-    match arguments.len() {
-        0 => println!("'-d' expects an argument (name of sticky note to delete)."),
-        _ => db_operations::delete_sticky_note(&arguments[0])
+    if arguments.len() == 1 {
+        db_operations::delete_sticky_note(&arguments[0])
+    } else {
+        println!("'-d' expects one argument (name of sticky note to delete).")
     }
 }
 
