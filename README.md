@@ -15,8 +15,8 @@ This installs the project as a binary named `sn`.
 # Usage
 
 The following commands are supported:
-* `sn list`:  Lists all sticky note names and a brief preview of their contents.
-* `sn read <name>`:  Prints the full sticky note with the given name.
-* `sn write <name> <text>`:  Writes a new sticky note with the given name - no-ops if a note with the given the name already exists.
-* `sn edit <name> <text>`:  Edits the sticky note with the given name - writes a new one if a note with the given the name couldn't be found.
-* `sn delete <name>`:  Deletes the note with the given name.
+* `sn`:  Lists all sticky note names and a brief preview of their contents.
+* `sn -r <name>`:  Prints the full sticky note with the given name.
+* `sn -w <name> <text>`:  Writes a sticky note with the given name - no-ops if a note with the given the name already exists.
+* `sn -W <name> <text>`:  Writes a sticky note with the given name - overwrites if a note with the given the name already exists.
+* `sn -d <name>`:  Deletes the note with the given name.

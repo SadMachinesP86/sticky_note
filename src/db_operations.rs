@@ -22,27 +22,14 @@ pub fn read_sticky_note(sticky_note_name: &String) {
     println!("{}\n===\n{}", sticky_note_name, retrieved_value);
 }
 
-pub fn write_sticky_note(name: &String, text: &String) {
+pub fn write_sticky_note(name: &String, text: &String, force: bool) {
     let db: MicroKV = open();
 
-    if db.exists(name).expect("Failed to check db for sticky note.") {
-        println!("Sticky note named {} already exists, did you mean 'edit'?", name);
+    if db.exists(name).expect("Failed to check db for sticky note.") && !force {
+        println!("Sticky note named {} already exists, use '-W' to overwrite.", name);
     } else {
         db.put(name, text).expect("Failed to write note.");
-        println!("Wrote sticky note named {}", name);
-    }
-}
-
-pub fn edit_sticky_note(name: &String, text: &String) {
-    let db: MicroKV = open();
-    let is_edit: bool = db.exists(name).expect("Failed to check db for sticky note.");
-
-    db.put(name, text).expect("Failed to write note.");
-
-    if is_edit {
-        println!("Edited sticky note named {}", name);
-    } else {
-        println!("Wrote sticky note named {} (couldn't find existing note to edit).", name);
+        println!("Wrote sticky note named {}.", name);
     }
 }
 
