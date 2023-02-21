@@ -4,13 +4,7 @@ Minimalist command-line program to record 'sticky notes'. Basically a wrapper ar
 
 # Install
 
-Currently not published to crates.io. Clone and enter the repo, and install locally with:
-
-```
-cargo install --path ./
-```
-
-This installs the project as a binary named `sn`.
+Currently not published to crates.io. Clone and enter the repo, and install locally with `cargo install --path ./` (or, `bin/install`). This installs the project as a binary named `sn`.
 
 # Usage
 
